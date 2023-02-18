@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<!-- OPTIONS -->
+	<string name="option_header_single_window">Single Window</string>
+	<string name="option_label_single_window_images">Single Images</string>
+	<string name="option_label_single_window_chars">Single Characters</string>
+	<string name="option_label_single_window_items">Single Items</string>
+	<string name="option_label_single_window_npcs">Single NPCs</string>
+	<string name="option_label_single_window_vehicles">Single Vehicles</string>
+
+	<!-- VALUES -->
+	<string name="option_val_yes">yes</string>
+	<string name="option_val_no">no</string>
+</root>
