@@ -9,15 +9,16 @@
 		Release History:
 		1.0 - Initial release by Celestian
 		1.1 - Fixed error when windows had no class
+		1.2 - Added options to make five window types non-singular
 -->
 
-<root version="1" release="1">
+<root version="1" release="2">
 
 	<announcement text="CoreRPG - Single Window version 1.2\rby Celestian.  Updated by GKEnialb." font="emotefont" icon="GKElogo" />
 
 	<properties>
 		<name>CoreRPG - Single Window</name>
-		<version>1.1</version>
+		<version>1.2</version>
 		<description>
 			<text>Only allow a single window of each record type.</text>
 			<author>Celestian and GKEnialb</author>
