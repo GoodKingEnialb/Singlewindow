@@ -193,38 +193,43 @@ function onWindowOpened(window)
     if not ignoredWindowClass(sName) then 
       --Debug.console("Not ignored")
       if aWindowList[sName] then
-        sPath = aNodes[#aNodes] 
-        --Debug.console("sPath = " .. sPath .. " numNodes = " .. #aNodes)
+        local sPrevPath = aNodes[#aNodes] 
+        --Debug.console("sPrevPath = " .. sPrevPath .. " numNodes = " .. #aNodes)
 
         -- local w = Interface.findWindow(sName,sPath) 
-        local oldWindowKey = sName .. sPath
-        local w = fullWindowList[oldWindowKey]
-        if w then
-          --Debug.console("Retrieved " .. type(w) .. " from " .. oldWindowKey)
-          sPath = node.getPath() 
-          --Debug.console("sPath2 = " .. sPath)
-          table.insert(aNodes,sPath) 
-          window.setPosition(w.getPosition())
-          window.setSize(w.getSize())
-          -- if control down, we don't close current open window of this class
-          -- else we close them
-          if not Input.isControlPressed() then
-            --Debug.console("Closing window")
-            --onWindowClosed(w) 
-            w.close() 
-            --removeNode(sName, aNodes)
+        local oldWindowKey = sName .. sPrevPath
+        if oldWindowKey ~= key then
+          local w = fullWindowList[oldWindowKey]
+          --Debug.console("type(w) = " .. type(w))
+          if w and type(w) == "windowinstance" then
+            --Debug.console("Retrieved " .. type(w) .. " from " .. oldWindowKey)
+            sPath = node.getPath() 
+            --Debug.console("sPath2 = " .. sPath)
+            table.insert(aNodes,sPath) 
+            window.setPosition(w.getPosition())
+            window.setSize(w.getSize())
+            -- if control down, we don't close current open window of this class
+            -- else we close them
+            if not Input.isControlPressed() then
+              --Debug.console("Closing window")
+              --onWindowClosed(w) 
+              w.close() 
+              --removeNode(sName, aNodes)
+            end
+          else
+            --Debug.console("No w")
+            -- window is not around/opened
+            removeNode(sName, aNodes)
           end
-        else
-          --Debug.console("No w")
-          -- window is not around/opened
-          removeNode(sName, aNodes)
+        --else
+          --Debug.console("Same window")
         end
       end
+      addWindow(node, sName)
     end
-    addWindow(node, sName)
   end
 
-  onWindowOpened_orig(window)
+  --onWindowOpened_orig(window)
 end
 
 -- function called when any window is closed.
